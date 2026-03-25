@@ -4,10 +4,11 @@
 import { useState, useEffect } from 'react';
 import { Card, CardTitle } from '@/components/ui/Card';
 import { useConfirmStore } from '@/lib/store';
+import { RoleGuard } from '@/components/auth/RoleGuard';
 
 type Section = 'menu' | 'users' | 'services' | 'ateliers' | 'categories' | 'export';
 
-export default function AdminPage() {
+function AdminPage() {
   const [section, setSection] = useState<Section>('menu');
   const [users, setUsers] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
@@ -118,4 +119,12 @@ export default function AdminPage() {
   );
 
   return null;
+}
+
+export default function AdminPageWrapper() {
+  return (
+    <RoleGuard allowedRoles={['admin']}>
+      <AdminPage />
+    </RoleGuard>
+  );
 }

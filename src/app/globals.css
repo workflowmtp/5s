@@ -1,0 +1,54 @@
+/* src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #0B1120;
+  --bg-secondary: #111827;
+  --bg-card: #1A2332;
+  --bg-input: #0F1A2A;
+  --border: #1E2D40;
+  --text-primary: #E8ECF1;
+  --text-secondary: #8899AA;
+  --text-muted: #556677;
+}
+
+[data-theme="light"] {
+  --bg-primary: #B0B8C8;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #C5CCDA;
+  --border: #9AA4B8;
+  --text-primary: #000000;
+  --text-secondary: #111827;
+  --text-muted: #374151;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="light"] body {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* Font utility classes */
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-body { font-family: 'DM Sans', sans-serif; }

@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Production
+build/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Prisma
+prisma/*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug
+npm-debug.log*

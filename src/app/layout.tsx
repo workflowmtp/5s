@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from 'next';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from '@/components/providers/SessionProvider';
 import './globals.css';
 
 export const metadata: Metadata = {

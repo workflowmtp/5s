@@ -15,9 +15,14 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { messages, context } = body;
 
-  // Check if IA is active
-  const iaConfig = await prisma.config.findUnique({ where: { cle: 'ia' } });
-  const iaActive = (iaConfig?.valeur as any)?.actif !== false;
+  // Check if IA is active (default to active if DB is unreachable)
+  let iaActive = true;
+  try {
+    const iaConfig = await prisma.config.findUnique({ where: { cle: 'ia' } });
+    iaActive = (iaConfig?.valeur as any)?.actif !== false;
+  } catch {
+    // DB unreachable — default to active
+  }
 
   if (!iaActive) {
     return NextResponse.json({

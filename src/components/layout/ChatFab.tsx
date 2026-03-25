@@ -64,6 +64,9 @@ export function ChatFab() {
       });
 
       const data = await res.json();
+      console.log('[CHAT] Raw response:', data);
+      console.log('[CHAT] Reply length:', data.reply?.length);
+      console.log('[CHAT] Reply preview:', data.reply?.substring(0, 200));
       addMessage({ role: 'bot', text: data.reply || 'Pas de réponse.' });
     } catch {
       addMessage({ role: 'bot', text: 'Erreur de communication. Veuillez réessayer.' });
@@ -111,7 +114,18 @@ export function ChatFab() {
                   ? 'self-end bg-blue-500 text-white rounded-br-sm'
                   : 'self-start rounded-bl-sm'}`}
                 style={m.role === 'bot' ? { background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-primary)' } : undefined}
-                dangerouslySetInnerHTML={{ __html: m.role === 'bot' ? m.text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>') : m.text }}
+                dangerouslySetInnerHTML={{ 
+                  __html: m.role === 'bot' 
+                    ? m.text
+                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\n\n/g, '</p><p>')
+                        .replace(/\n/g, '<br>')
+                        .replace(/^/, '<p>')
+                        .replace(/$/, '</p>')
+                        .replace(/<p><\/p>/g, '')
+                        .replace(/<p>(.*?)<\/p>/g, '<p style="margin: 4px 0;">$1</p>')
+                    : m.text 
+                }}
               />
             ))}
             {isSending && (

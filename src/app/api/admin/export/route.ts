@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     csv += 'UTILISATEURS\n';
     csv += 'Matricule;Nom;Prénom;Rôle;Service;Atelier;Fonction;Statut\n';
     for (const u of users) {
-      csv += `${u.matricule};${u.nom};${u.prenom};${u.role};${u.service.nom};${u.atelier?.nom || ''};${u.fonction};${u.statut}\n`;
+      csv += `${u.matricule};${u.nom};${u.prenom};${u.role};${u.service?.nom || ''};${u.atelier?.nom || ''};${u.fonction};${u.statut}\n`;
     }
     csv += '\n';
   }

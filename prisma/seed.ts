@@ -260,7 +260,7 @@ async function main() {
   }
 
   for (const ds of demoSuggs) {
-    const isRetained = [SuggestionStatus.retenue, SuggestionStatus.mise_en_oeuvre, SuggestionStatus.planifiee].includes(ds.statut);
+    const isRetained = ds.statut === SuggestionStatus.retenue || ds.statut === SuggestionStatus.mise_en_oeuvre || ds.statut === SuggestionStatus.planifiee;
     await prisma.suggestion.create({
       data: {
         userId: users[ds.mat].id,
